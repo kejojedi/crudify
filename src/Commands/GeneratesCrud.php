@@ -117,7 +117,7 @@ class GeneratesCrud extends Command
         $routes_contents = file_get_contents($routes_file);
 
         if (!Str::contains($routes_contents, $stub_contents)) {
-            file_put_contents($routes_file, rtrim($routes_contents) . PHP_EOL . PHP_EOL . $stub_contents . PHP_EOL);
+            file_put_contents($routes_file, rtrim($routes_contents) . PHP_EOL . PHP_EOL . $stub_contents);
 
             $this->line('Routes inserted in: ' . $routes_file);
         }
