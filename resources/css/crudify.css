@@ -1,0 +1,37 @@
+.card-body table.dataTable {
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    width: calc(100% + 2.5rem);
+}
+
+div.dataTables_paginate {
+    overflow-x: auto
+}
+div.dataTables_paginate .pagination {
+    display: inline-table
+}
+div.dataTables_paginate .pagination li {
+    display: table-cell
+}
+
+@media (min-width: 768px) {
+    .card-body table.dataTable tr th:first-child, .card-body table.dataTable tr td:first-child {
+        padding-left: 1.25rem;
+    }
+    .card-body table.dataTable tr th:last-child, .card-body table.dataTable tr td:last-child {
+        padding-right: 1.25rem;
+    }
+    table.dataTable tr th, table.dataTable tr td {
+        vertical-align: middle;
+    }
+}
+
+@media (max-width: 767.98px) {
+    table.dataTable > tbody > tr.child span.dtr-title:empty {
+        display: none;
+    }
+
+    .col-form-label {
+        padding-top: 0 !important;
+    }
+}

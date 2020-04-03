@@ -1,0 +1,12 @@
+<?php
+
+use App\DummyClass;
+use Illuminate\Database\Seeder;
+
+class DummyClassSeeder extends Seeder
+{
+    public function run()
+    {
+        factory(DummyClass::class, 25)->create();
+    }
+}

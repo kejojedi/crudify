@@ -1,0 +1,22 @@
+@extends('layouts.app')
+
+@section('title', __('DummyTitles'))
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h1>@yield('title')</h1>
+            </div>
+            <div class="col-md-auto mb-3 mb-md-0">
+                <a href="{{ route('DummyVars.create') }}" class="btn btn-primary">{{ __('Create DummyTitle') }}</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                {!! $datatables->html->table() !!}
+                {!! $datatables->html->scripts() !!}
+            </div>
+        </div>
+    </div>
+@endsection

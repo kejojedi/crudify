@@ -1,0 +1,73 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\DummyClass;
+use Illuminate\Http\Request;
+
+class DummyClassController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function index(Request $request)
+    {
+        $query = DummyClass::query();
+        $datatables = DummyClass::datatables($query);
+
+        return $request->ajax()
+            ? $datatables->json
+            : view('DummyVars.index', compact('datatables'));
+    }
+
+    public function create()
+    {
+        return view('DummyVars.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['required'],
+        ]);
+
+        DummyClass::create($request->all());
+
+        return $request->input('submit') == 'reload'
+            ? redirect()->route('DummyVars.create')
+            : redirect()->route('DummyVars.index');
+    }
+
+    public function show(DummyClass $DummyVar)
+    {
+        return view('DummyVars.show', compact('DummyVar'));
+    }
+
+    public function edit(DummyClass $DummyVar)
+    {
+        return view('DummyVars.edit', compact('DummyVar'));
+    }
+
+    public function update(Request $request, DummyClass $DummyVar)
+    {
+        $request->validate([
+            'name' => ['required'],
+        ]);
+
+        $DummyVar->update($request->all());
+
+        return $request->input('submit') == 'reload'
+            ? redirect()->route('DummyVars.edit', $DummyVar->id)
+            : redirect()->route('DummyVars.index');
+    }
+
+    /** @noinspection PhpUnhandledExceptionInspection */
+    public function destroy(DummyClass $DummyVar)
+    {
+        $DummyVar->delete();
+
+        return redirect()->route('DummyVars.index');
+    }
+}

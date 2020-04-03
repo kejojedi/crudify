@@ -1,0 +1,32 @@
+{
+    "name": "kejojedi/crudify",
+    "description": "Laravel 7 CRUD app scaffolding & generator.",
+    "homepage": "https://github.com/kejojedi/crudify",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kevin Dion",
+            "email": "kejojedi@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "barryvdh/laravel-ide-helper": "^2.6",
+        "laravel/framework": "^7.0",
+        "laravel/ui": "^2.0",
+        "yajra/laravel-datatables-html": "^4.23",
+        "yajra/laravel-datatables-oracle": "^9.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kejojedi\\Crudify\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kejojedi\\Crudify\\Providers\\CrudifyServiceProvider"
+            ]
+        }
+    }
+}
