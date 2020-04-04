@@ -108,7 +108,7 @@ Radios:
     
 Complete form example:
 
-    <form method="post" action="{{ route('cars.store') }}">
+    <form method="post" action="{{ route('cars.store') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="card">
