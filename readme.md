@@ -105,6 +105,30 @@ Radios:
 
     <x-crudify-radios name="color" :options="['Red' => '#ff0000', 'Green' => '#00ff00', 'Blue' => '#0000ff']" :value="old('color')" />
     <x-crudify-radios name="color" :options="['Red' => '#ff0000', 'Green' => '#00ff00', 'Blue' => '#0000ff']" :label="__('Car Color')" id="car_color" :value="old('color', $car->color)" />
+    
+Complete form example:
+
+    <form method="post" action="{{ route('cars.store') }}">
+        @csrf
+
+        <div class="card">
+            <ul class="list-group list-group-flush">
+                <x-crudify-input name="name" :value="old('name')" />
+                <x-crudify-input name="year" type="number" :value="old('year')" />
+                <x-crudify-file name="image" />
+                <x-crudify-select name="fuel_type" :options="['Gas', 'Diesel', 'Electric']" :value="old('fuel_type')" />
+                <x-crudify-radios name="color" :options="['Red' => '#ff0000', 'Green' => '#00ff00', 'Blue' => '#0000ff']" :value="old('color')" />
+                <x-crudify-textarea name="description" :value="old('description')" />
+                <x-crudify-checkbox name="insured" :value="old('insured')" />
+                <x-crudify-checkboxes name="features" :options="['Bluetooth', 'Navigation', 'Speakers']" :value="old('features')" />
+            </ul>
+
+            <div class="card-footer text-md-right border-top-0">
+                <button type="submit" name="submit" value="reload" class="btn btn-primary">{{ __('Create & Add Another') }}</button>
+                <button type="submit" name="submit" value="redirect" class="btn btn-primary">{{ __('Create') }}</button>
+            </div>
+        </div>
+    </form>
 
 ## Packages Used
 
