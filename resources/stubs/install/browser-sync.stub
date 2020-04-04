@@ -1,0 +1,6 @@
+mix.browserSync({
+    proxy: 'DummyDomain',
+    snippetOptions: {
+        whitelist: ['*'],
+    }
+});

@@ -87,10 +87,10 @@ class InstallsCrudify extends Command
         $mix_path = base_path('webpack.mix.js');
         $mix_contents = file_get_contents($mix_path);
         $mix_domain = str_replace(['http://', 'https://'], '', config('app.url'));
-        $mix_import = "mix.browserSync('$mix_domain');";
+        $stub_contents = str_replace('DummyDomain', $mix_domain, rtrim(file_get_contents(__DIR__ . '/../../resources/stubs/install/browser-sync.stub')));
 
-        if (!Str::contains($mix_contents, $mix_import)) {
-            $mix_contents = trim($mix_contents) . PHP_EOL . PHP_EOL . $mix_import;
+        if (!Str::contains($mix_contents, $stub_contents)) {
+            $mix_contents = rtrim($mix_contents) . PHP_EOL . PHP_EOL . $stub_contents;
         }
 
         file_put_contents($mix_path, $mix_contents);
