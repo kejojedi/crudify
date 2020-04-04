@@ -1,0 +1,18 @@
+<li class="list-group-item py-3">
+    <div class="row">
+        <div class="col-md-2">{{ $label }}</div>
+        <div class="col-md">
+            <input type="hidden" name="{{ $name }}" value="">
+
+            @foreach($options as $option_label => $option_value)
+                <div class="custom-control custom-radio">
+                    <input type="radio" name="{{ $name }}" id="{{ $id . '_' . $loop->index }}" class="custom-control-input @error($name) is-invalid @enderror"
+                           value="{{ $option_value }}" {{ $option_value == $value ? 'checked' : '' }}>
+                    <label for="{{ $id . '_' . $loop->index }}" class="custom-control-label">{{ $option_label }}</label>
+                </div>
+            @endforeach
+
+            @error($name) <span class="invalid-feedback font-weight-bold d-block">{{ $message }}</span> @enderror
+        </div>
+    </div>
+</li>

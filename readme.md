@@ -2,7 +2,7 @@
 
 # Crudify
 
-Crudify is a Laravel 7 package which includes sensible CRUD app scaffolding and a generator to make your life easier. It automates initial CRUD app setup with the `crudify:install` command, and generates CRUD resource files for you with the `crudify:generate` command.
+Crudify is a Laravel 7 package which includes sensible CRUD app scaffolding and a generator to make your life easier. It automates initial CRUD app setup with the `crudify:install` command, and generates CRUD resource files for you with the `crudify:generate` command. It also includes form components to make creating forms a breeze.
 
 It is configured to work well with PHPStorm, Valet, and Laragon, among others. **This package requires Node.js to be installed in order to run `npm` commands.**
 
@@ -60,6 +60,51 @@ This will generate:
 - Routes
 
 Don't forget to migrate after updating the new migration file.
+
+## Form Components
+
+Crudify offers simple form components to make building forms fast & easy. See below for minimal and complete examples of each component.
+
+Input:
+
+    <x-crudify-input name="name" :value="old('name')" />
+    <x-crudify-input name="year" type="number" :label="__('Year')" id="car_year" :value="old('year', $car->year)" />
+
+Textarea:
+
+    <x-crudify-textarea name="description" :value="old('description')" />
+    <x-crudify-textarea name="description" rows="5" :label="__('Car Description')" id="car_description" :value="old('description', $car->description)" />
+    
+Select:
+
+    <x-crudify-select name="fuel_type" :options="['Gas', 'Diesel', 'Electric']" :value="old('fuel_type')" />
+    <x-crudify-select name="fuel_type" :options="['Gas', 'Diesel', 'Electric']" :empty="false" :label="__('Car Fuel Type')" id="car_fuel_type" :value="old('fuel_type', $car->fuel_type)" />
+
+**Note: if the options are an associative array, the keys are used as the labels and the values as the values. For sequential arrays, the values are used for both the labels and values.**
+
+File:
+
+    <x-crudify-file name="image" />
+    <x-crudify-file name="other_images" :label="__('Other Car Images')" :file-label="__('Choose Images')" id="other_car_images" :multiple="true" />
+
+Checkbox:
+
+    <x-crudify-checkbox name="insured" :value="old('insured')" />
+    <x-crudify-checkbox name="insured" :label="__('Insured')" :checkbox-label="__('This car is insured')" id="car_insured" :value="old('insured', $car->insured)" />
+
+**Note: checkbox attributes should have `boolean` migration columns.**
+
+Checkboxes:
+
+    <x-crudify-checkboxes name="features" :options="['Bluetooth', 'Navigation', 'Speakers']" :value="old('features')" />
+    <x-crudify-checkboxes name="features" :options="['Bluetooth', 'Navigation', 'Speakers']" :label="__('Car Features')" id="car_features" :value="old('features', $car->features)" />
+
+**Note: checkboxes attributes should be cast to `array` with `text` migration columns.**
+
+Radios:
+
+    <x-crudify-radios name="color" :options="['Red' => '#ff0000', 'Green' => '#00ff00', 'Blue' => '#0000ff']" :value="old('color')" />
+    <x-crudify-radios name="color" :options="['Red' => '#ff0000', 'Green' => '#00ff00', 'Blue' => '#0000ff']" :label="__('Car Color')" id="car_color" :value="old('color', $car->color)" />
 
 ## Packages Used
 

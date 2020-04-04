@@ -14,3 +14,13 @@ $.extend(true, $.fn.dataTable.defaults, {
         localStorage.setItem($(this).attr('id'), JSON.stringify(data));
     }
 });
+
+$(document).on('input', '.custom-file-input', function () {
+    let files = [];
+
+    for (let i = 0; i < $(this)[0].files.length; i++) {
+        files.push($(this)[0].files[i].name);
+    }
+
+    $(this).next('.custom-file-label').html(files.join(', '));
+});
