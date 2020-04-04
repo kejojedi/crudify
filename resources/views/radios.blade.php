@@ -1,6 +1,6 @@
 <li class="list-group-item py-3">
     <div class="row">
-        <div class="col-md-2">{{ $label }}</div>
+        <label class="col-form-label col-md-2 py-md-0">{{ $label }}</label>
         <div class="col-md">
             <input type="hidden" name="{{ $name }}" value="">
 
