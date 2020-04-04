@@ -3,6 +3,7 @@
 namespace Kejojedi\Crudify\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -19,6 +20,8 @@ class GeneratesCrud extends Command
         $this->createViewFiles();
         $this->insertNavLink();
         $this->insertRoutes();
+
+        Artisan::call('ide-helper:generate', [], $this->getOutput());
 
         $this->info('CRUD generation complete for: ' . $this->argument('model'));
         $this->warn("Don't forget to migrate after updating the new migration file.");
