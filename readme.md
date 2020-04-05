@@ -83,8 +83,8 @@ Declaring [columns](https://yajrabox.com/docs/laravel-datatables/master/html-bui
 
 Different ways of defining default sort order:
 
-    protected $orderBy = 'id'; // sorts by id, ascending
-    protected $orderBy = ['created_at', 'desc']; // sorts by created_at, descending
+    protected $order_by = 'id'; // sorts by id, ascending
+    protected $order_by = ['created_at', 'desc']; // sorts by created_at, descending
     
     protected function orderBy()
     {

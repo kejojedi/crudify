@@ -10,7 +10,7 @@ use Yajra\DataTables\Html\Column;
 class Datatable
 {
     private $data;
-    protected $orderBy = 'name';
+    protected $order_by = 'name';
 
     public function __construct($data)
     {
@@ -67,7 +67,7 @@ class Datatable
 
     protected function orderBy()
     {
-        return $this->orderBy;
+        return $this->order_by;
     }
 
     private function orderByKey()
