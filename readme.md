@@ -148,8 +148,8 @@ File:
 
 Checkbox:
 
-    <x-crudify-checkbox name="insured" :value="old('insured', $car->insured ?? '')" />
-    <x-crudify-checkbox name="insured" :label="__('Insured')" :checkbox-label="__('This car is insured')" id="car_insured" :value="old('insured', $car->insured ?? '')" />
+    <x-crudify-checkbox name="insured" :value="old('insured', $car->insured ?? 0)" />
+    <x-crudify-checkbox name="insured" :label="__('Insured')" :checkbox-label="__('This car is insured')" id="car_insured" :value="old('insured', $car->insured ?? 0)" />
 
 **Note: checkbox attributes should have `boolean` migration columns.**
 
