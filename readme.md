@@ -61,6 +61,8 @@ This will generate:
 
 Don't forget to migrate after updating the new migration file.
 
+**Tip: use the `--force` in order to replace existing generated files e.g. `php artisan crudify:generate Model --force`**
+
 ## Form Components
 
 Crudify offers simple form components to make building forms fast & easy. See below for minimal and complete examples of each component.
