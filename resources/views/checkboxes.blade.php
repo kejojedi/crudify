@@ -13,6 +13,7 @@
             @endforeach
 
             @error($name) <span class="invalid-feedback font-weight-bold d-block">{{ $message }}</span> @enderror
+            @if($hint) <small class="form-text text-secondary">{{ $hint }}</small> @endif
         </div>
     </div>
 </li>

@@ -4,6 +4,7 @@
         <div class="col-md">
             <textarea name="{{ $name }}" id="{{ $id }}" class="form-control @error($name) is-invalid @enderror" rows="{{ $rows }}">{{ $value }}</textarea>
             @error($name) <span class="invalid-feedback font-weight-bold">{{ $message }}</span> @enderror
+            @if($hint) <small class="form-text text-secondary">{{ $hint }}</small> @endif
         </div>
     </div>
 </li>

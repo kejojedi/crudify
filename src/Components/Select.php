@@ -16,8 +16,9 @@ class Select extends Component
     public $label;
     public $id;
     public $value;
+    public $hint;
 
-    public function __construct($name, $options, $empty = true, $label = null, $id = null, $value = null)
+    public function __construct($name, $options, $empty = true, $label = null, $id = null, $value = null, $hint = null)
     {
         $this->name = $name;
         $this->options = $this->formatOptions($options);
@@ -25,6 +26,7 @@ class Select extends Component
         $this->label = $label ?? Str::title(str_replace('_', ' ', $name));
         $this->id = $id ?? $name;
         $this->value = $value;
+        $this->hint = $hint;
     }
 
     public function render()
