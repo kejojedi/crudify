@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\DummyClass;
+use App\Http\Datatables\DummyClassDatatable;
+use App\Http\Requests\DummyClassRequest;
 use Illuminate\Http\Request;
 
 class DummyClassController extends Controller
@@ -15,11 +17,11 @@ class DummyClassController extends Controller
     public function index(Request $request)
     {
         $query = DummyClass::query();
-        $datatables = DummyClass::datatables($query);
+        $datatables = DummyClassDatatable::make($query);
 
         return $request->ajax()
-            ? $datatables->json
-            : view('DummyVars.index', compact('datatables'));
+            ? $datatables->json()
+            : view('DummyVars.index', $datatables->html());
     }
 
     public function create()
@@ -27,10 +29,8 @@ class DummyClassController extends Controller
         return view('DummyVars.create');
     }
 
-    public function store(Request $request)
+    public function store(DummyClassRequest $request)
     {
-        $request->validate(DummyClass::rules());
-
         DummyClass::create($request->all());
 
         return $request->input('submit') == 'reload'
@@ -48,10 +48,8 @@ class DummyClassController extends Controller
         return view('DummyVars.edit', compact('DummyVar'));
     }
 
-    public function update(Request $request, DummyClass $DummyVar)
+    public function update(DummyClassRequest $request, DummyClass $DummyVar)
     {
-        $request->validate(DummyClass::rules($DummyVar));
-
         $DummyVar->update($request->all());
 
         return $request->input('submit') == 'reload'

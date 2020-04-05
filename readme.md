@@ -51,17 +51,74 @@ Run `crudify:generate` for a new model:
 This will generate:
 
 - Controller
+- Datatable
+- Form Request
 - Model
 - Factory
 - Migration
 - Seeder
-- View files
-- Navbar link
+- View Files
+- Navbar Link
 - Routes
 
 Don't forget to migrate after updating the new migration file.
 
 **Tip: use the `--force` in order to replace existing generated files e.g. `php artisan crudify:generate Model --force`**
+
+## Datatables
+
+Crudify includes a wrapper for [yajra/laravel-datatables-html](https://github.com/yajra/laravel-datatables-html) to make building datatables nice and declarative. Generated model datatable classes are located in `app\Http\Datatables`.
+
+Declaring [columns](https://yajrabox.com/docs/laravel-datatables/master/html-builder-column-builder):
+
+    protected function columns()
+    {
+        return [
+            Column::make('id'),
+            Column::make('name'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
+        ];
+    }
+
+Different ways of defining default sort order:
+
+    protected $orderBy = 'id'; // sorts by id, ascending
+    protected $orderBy = ['created_at', 'desc']; // sorts by created_at, descending
+    
+    protected function orderBy()
+    {
+        return 'id'; // sorts by id, ascending
+    }
+    
+    protected function orderBy()
+    {
+        return ['created_at', 'desc']; // sorts by created_at, descending
+    }
+    
+**Note: a users per-page entries & sorting preferences are saved per-table in their browser indefinitely, so this will only set the initial default order.**
+    
+Example of adding methods to the datatables html builder:
+
+    protected function htmlMethods(Builder &$html)
+    {
+        $html->ajax([
+            'url' => route('users.index'),
+            'type' => 'GET',
+            'data' => 'function(d) { d.key = "value"; }',
+        ]);
+    }
+    
+Example of adding methods to the datatables json builder:
+
+    protected function jsonMethods(DataTableAbstract &$datatables)
+    {
+        $datatables->editColumn('name', function(User $user) {
+            return 'Hi ' . $user->name . '!';
+        });
+    }
+    
+**Tip: If you don't want a datatable to have an actions column, simply remove the `actions()` method entirely.**
 
 ## Form Components
 
@@ -107,30 +164,8 @@ Radios:
 
     <x-crudify-radios name="color" :options="['Red' => '#ff0000', 'Green' => '#00ff00', 'Blue' => '#0000ff']" :value="old('color')" />
     <x-crudify-radios name="color" :options="['Red' => '#ff0000', 'Green' => '#00ff00', 'Blue' => '#0000ff']" :label="__('Car Color')" id="car_color" :value="old('color', $car->color)" />
-    
-Complete form example:
 
-    <form method="post" action="{{ route('cars.store') }}" enctype="multipart/form-data">
-        @csrf
-
-        <div class="card">
-            <ul class="list-group list-group-flush">
-                <x-crudify-input name="name" :value="old('name')" />
-                <x-crudify-input name="year" type="number" :value="old('year')" />
-                <x-crudify-file name="image" />
-                <x-crudify-select name="fuel_type" :options="['Gas', 'Diesel', 'Electric']" :value="old('fuel_type')" />
-                <x-crudify-radios name="color" :options="['Red' => '#ff0000', 'Green' => '#00ff00', 'Blue' => '#0000ff']" :value="old('color')" />
-                <x-crudify-textarea name="description" :value="old('description')" />
-                <x-crudify-checkbox name="insured" :value="old('insured')" />
-                <x-crudify-checkboxes name="features" :options="['Bluetooth', 'Navigation', 'Speakers']" :value="old('features')" />
-            </ul>
-
-            <div class="card-footer text-md-right border-top-0">
-                <button type="submit" name="submit" value="reload" class="btn btn-primary">{{ __('Create & Add Another') }}</button>
-                <button type="submit" name="submit" value="redirect" class="btn btn-primary">{{ __('Create') }}</button>
-            </div>
-        </div>
-    </form>
+**Tip: you can determine if the fields are showing on the `create` or `edit` page by checking `isset($model)` (e.g. `isset($car)`). If a `$model` is set, it means the user is on the edit page.**
 
 ## Packages Used
 

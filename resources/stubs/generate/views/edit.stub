@@ -8,7 +8,7 @@
                 <h1>@yield('title')</h1>
             </div>
             <div class="col-md-auto mb-3 mb-md-0">
-                @include('DummyVars.action')
+                @include('DummyVars.actions')
             </div>
         </div>
 

@@ -56,6 +56,8 @@ class GeneratesCrud extends Command
         $files = [
             'DummyClass' => app_path(),
             'DummyClassController' => app_path('Http/Controllers'),
+            'DummyClassDatatable' => app_path('Http/Datatables'),
+            'DummyClassRequest' => app_path('Http/Requests'),
             'DummyClassFactory' => database_path('factories'),
             'DummyClassSeeder' => database_path('seeds'),
             'DummyMigration' => database_path('migrations'),

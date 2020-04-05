@@ -5,39 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Kejojedi\Crudify\Traits\FillsColumns;
 use Kejojedi\Crudify\Traits\SerializesDates;
-use Yajra\DataTables\Facades\DataTables;
 
 class DummyClass extends Model
 {
     use FillsColumns, SerializesDates;
-
-    public static function rules(DummyClass $DummyVar = null)
-    {
-        return [
-            'name' => ['required'],
-        ];
-    }
-
-    /** @noinspection PhpUnhandledExceptionInspection */
-    public static function datatables($query)
-    {
-        $html = DataTables::getHtmlBuilder()
-            ->setTableId('DummyVar-datatables')
-            ->columns([
-                ['title' => __('ID'), 'data' => 'id'],
-                ['title' => __('Name'), 'data' => 'name'],
-                ['title' => __('Created At'), 'data' => 'created_at'],
-                ['title' => __('Updated At'), 'data' => 'updated_at'],
-            ])
-            ->addAction(['title' => ''])
-            ->orderBy(1, 'asc');
-
-        $json = DataTables::of($query)
-            ->editColumn('action', function (DummyClass $DummyVar) {
-                return view('DummyVars.action', compact('DummyVar'));
-            })
-            ->toJson();
-
-        return (object)compact('html', 'json');
-    }
 }

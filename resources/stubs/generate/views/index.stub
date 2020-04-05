@@ -14,8 +14,8 @@
 
         <div class="card">
             <div class="card-body">
-                {!! $datatables->html->table() !!}
-                {!! $datatables->html->scripts() !!}
+                {!! $html->table() !!}
+                {!! $html->scripts() !!}
             </div>
         </div>
     </div>
