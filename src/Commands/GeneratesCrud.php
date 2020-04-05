@@ -53,6 +53,9 @@ class GeneratesCrud extends Command
 
     private function createPhpFiles()
     {
+        File::ensureDirectoryExists(app_path('Http/Datatables'));
+        File::ensureDirectoryExists(app_path('Http/Requests'));
+
         $files = [
             'DummyClass' => app_path(),
             'DummyClassController' => app_path('Http/Controllers'),
