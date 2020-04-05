@@ -29,9 +29,7 @@ class DummyClassController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required'],
-        ]);
+        $request->validate(DummyClass::rules());
 
         DummyClass::create($request->all());
 
@@ -52,9 +50,7 @@ class DummyClassController extends Controller
 
     public function update(Request $request, DummyClass $DummyVar)
     {
-        $request->validate([
-            'name' => ['required'],
-        ]);
+        $request->validate(DummyClass::rules($DummyVar));
 
         $DummyVar->update($request->all());
 

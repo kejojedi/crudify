@@ -11,6 +11,13 @@ class DummyClass extends Model
 {
     use FillsColumns, SerializesDates;
 
+    public static function rules(DummyClass $DummyVar = null)
+    {
+        return [
+            'name' => ['required'],
+        ];
+    }
+
     /** @noinspection PhpUnhandledExceptionInspection */
     public static function datatables($query)
     {
