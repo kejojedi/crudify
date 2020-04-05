@@ -2,7 +2,10 @@
     <div class="row">
         <label for="{{ $id }}" class="col-form-label col-md-2">{{ $label }}</label>
         <div class="col-md">
-            <select name="{{ $name }}" id="{{ $id }}" class="custom-select @error($name) is-invalid @enderror">
+            <select name="{{ $name }}"
+                    id="{{ $id }}"
+                    class="custom-select @error($name) is-invalid @enderror"
+                    {{ $disabled ? 'disabled' : '' }}>
                 @if($empty)
                     <option value=""></option>
                 @endif
