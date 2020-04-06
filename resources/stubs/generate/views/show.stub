@@ -13,9 +13,9 @@
         </div>
 
         <div class="card">
-            <ul class="list-group list-group-flush">
+            <div class="list-group list-group-flush">
                 @foreach($DummyVar->toArray() as $attribute => $value)
-                    <li class="list-group-item py-3">
+                    <div class="list-group-item py-3">
                         <div class="row">
                             <div class="col-md-2 text-secondary">
                                 {{ Str::title(str_replace('_', ' ', $attribute)) }}
@@ -28,9 +28,9 @@
                                 @endif
                             </div>
                         </div>
-                    </li>
+                    </div>
                 @endforeach
-            </ul>
+            </div>
         </div>
     </div>
 @endsection
