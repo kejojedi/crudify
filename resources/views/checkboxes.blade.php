@@ -1,4 +1,4 @@
-<li class="list-group-item py-3">
+<div class="list-group-item py-3">
     <div class="row">
         <label class="col-form-label col-md-2 py-md-0">{{ $label }}</label>
         <div class="col-md">
@@ -21,4 +21,4 @@
             @if($hint) <small class="form-text text-secondary">{{ $hint }}</small> @endif
         </div>
     </div>
-</li>
+</div>
